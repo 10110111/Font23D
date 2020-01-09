@@ -265,6 +265,19 @@ float AddCharacter(FT_Face face, FT_ULong ch, unsigned short bezierSteps, float 
 
 			    cdt->Triangulate();
 			    std::vector<Triangle*> ts = cdt->GetTriangles();
+                std::cout << "{";
+			    for(int i = 0; i < ts.size(); i++)
+                {
+                    const auto t = ts[i];
+                    const auto& a=*t->GetPoint(0);
+                    const auto& b=*t->GetPoint(1);
+                    const auto& c=*t->GetPoint(2);
+                    std::cout << "{";
+                    std::cout << "{" << a.x << "," << a.y << "},";
+                    std::cout << "{" << b.x << "," << b.y << "},";
+                    std::cout << "{" << c.x << "," << c.y << "}";
+                    std::cout << (i+1<ts.size() ? "},\n" : "}}\n");
+                }
 			    for(int i = 0; i < ts.size(); i++) {
 			    	Triangle* ot = ts[i];
 
